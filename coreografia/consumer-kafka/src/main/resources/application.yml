@@ -1,0 +1,26 @@
+server:
+  port: 8098
+
+spring:
+  kafka:
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: com.example.kafka.consumerkafka.config.KafkaConfig
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: SCRAM-SHA-256
+        jass:
+          config: org.apache.kafka.common.security.scram.ScramLoginModule required username="baz5ybq4" password="0ecgqQIML347y7xga3Jj00tcZyMo1OcG";
+    consumer:
+      bootstrap-servers: moped-01.srvs.cloudkafka.com:9092,moped-02.srvs.cloudkafka.com:9092,moped-03.srvs.cloudkafka.com:9092;
+      group-id: baz5ybq4-consumers
+      auto-offset-reset: earliest
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+cloudkarafka:
+  topic: baz5ybq4-portabilidad-grupo
