@@ -1,5 +1,10 @@
 package com.producer.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.producer.model.Product;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -12,12 +17,6 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import java.util.Map;
-
-import com.producer.model.Product;
-
-import java.util.HashMap;
-
 @Configuration
 @EnableKafka
 @Slf4j
@@ -27,7 +26,7 @@ public class KafkaConfig {
 	private String bootstrapServers;
 
 	@Bean
-	Map<String, Object> producerConfigs() {
+	Map<String, Object> producerConfig() {
 		Map<String, Object> props = new HashMap<>();
 		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -37,7 +36,7 @@ public class KafkaConfig {
 
 	@Bean
 	ProducerFactory<String, Product> producerFactory() {
-		return new DefaultKafkaProducerFactory<>(producerConfigs());
+		return new DefaultKafkaProducerFactory<>(producerConfig());
 	}
 
 	@Bean
