@@ -17,9 +17,8 @@ public class KafkaSender {
 
 	@Autowired
 	private KafkaTemplate<String, Product> kafkaTemplate;
-	
 	public void sendCustomMessage(Product product, String topicName) {
-		log.info("enviando Json Serializer : {}", product);
+		log.info("Enviando Json Serializer : {}", product);
 		Message<Product> message = MessageBuilder
 				.withPayload(product)
 				.setHeader(KafkaHeaders.TOPIC, topicName)

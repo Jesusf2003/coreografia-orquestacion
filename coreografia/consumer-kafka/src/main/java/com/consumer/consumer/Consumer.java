@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Consumer {
 
-	@KafkaListener(topics = "baz5ybq4-conkaf", containerFactory = "kafkaListenerContainerFactory")
+	@KafkaListener(topics = "mjtm394j-consumer", containerFactory = "kafkaListenerContainerFactory")
 	public void listen(@Payload Product msg, @Headers MessageHeaders headers) {
 		log.info("Mensaje recibido: " + msg);
 	}

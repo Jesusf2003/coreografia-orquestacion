@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/kafka/sender")
-public class ProducerController {
+@RequestMapping("kafka/sender")
+public class ProductController {
 
 	@Autowired
 	KafkaSender kafkaSender;
 	
-	@PostMapping()
+	@PostMapping
 	public HttpStatus sendKafka(@RequestBody Product product) {
-		kafkaSender.sendCustomMessage(product, "topic-name");
+		kafkaSender.sendCustomMessage(product, "mjtm394j-consumer");
 		return HttpStatus.OK;
 	}
 }
